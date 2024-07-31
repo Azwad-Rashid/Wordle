@@ -13,3 +13,8 @@ Wordle documentation
    introduction
    modules
 
+Indices and Tables
+------------------
+
+* :ref:`genindex`
+* :ref:`modindex`
