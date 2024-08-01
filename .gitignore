@@ -1,3 +1,7 @@
+# Test .py files
+test.py
+gpt.py
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
