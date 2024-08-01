@@ -1,2 +1,8 @@
 
-__all__ = ["main", "styling", "create_widgets"]
+__all__ = [
+    "create_widgets",
+    "load_config",
+    "main",
+    "styling",
+    "WORDLE"
+    ]
