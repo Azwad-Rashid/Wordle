@@ -29,10 +29,9 @@ def create_widgets(master: WORDLE) -> None:
     # Add the name on top as the title
     add_title(master, widget_font, widget_hex)
 
-    # TODO: Add the board and its tiles
+    # Add the board and its tiles
     add_board(master, widget_font, widget_hex)
 
-    print(master.collection)
     # TODO: Add the keyboard
 
 
@@ -109,17 +108,18 @@ def add_board(master: WORDLE, font: font.Font, colors: dict[str, str]) -> None:
         background=colors["black"]
     )
 
-    WORDLE
-
     for row in range(6):
         for column in range(5):
             temp = tk.Label(
                 master=board_frame,
                 background=colors["black"],
+                foreground="#ffffff",
+                text=" ",
+                font=font,
                 highlightbackground=colors["grey"],
                 highlightthickness=2,
-                height=4, # Set it to 4 arbitrarily, seemed to work (idk why)
-                width=8 # Set it to 8 arbitrarily, seemed to work (idk why)
+                height=1, # Set it to 1 arbitrarily, seemed to work (idk why)
+                width=4 # Set it to 4 arbitrarily, seemed to work (idk why)
             )
             
             temp.grid(
