@@ -3,6 +3,8 @@
 import tkinter as tk
 from typing import Any
 
+from random_word import random_word
+
 class WORDLE(tk.Tk):
     '''Extension of classic Tk class for WORDLE
     
@@ -11,24 +13,15 @@ class WORDLE(tk.Tk):
     `collection`: dict[str, Any]
     
     A collection of all it's widgets. Keys are:
+    - word: str
     - title: [tk.Frame(s)]
     - board: [[tk.Label(s)],[tk.Label(s)],[tk.Label(s)],[tk.Label(s)],[tk.Label(s)],[tk.Label(s)]]
     '''
 
     def __init__(self) -> None:
-        '''Extension of classic Tk class for WORDLE
-        
-        Special attribute
-        -----------------
-        `collection`: dict[str, Any]
-
-        A collection of all it's widgets. Keys are:
-        - title: [tk.Frame(s)]
-        - board: [[tk.Label(s)],[tk.Label(s)],[tk.Label(s)],[tk.Label(s)],[tk.Label(s)],[tk.Label(s)]]
-        '''
-
         super().__init__()
         self.collection: dict[str, Any] = {
+            "word": random_word,
             "frames": [],
             "board": [[],[],[],[],[],[]]
         }
