@@ -1,19 +1,18 @@
 '''Custom class to be the main widget of a WORDLE game'''
 
 import tkinter as tk
+from typing import Any
 
 class WORDLE(tk.Tk):
     '''Extension of classic Tk class for WORDLE
     
     Special attribute
     -----------------
-    `collection`: dict[str, list[Label | Button]
+    `collection`: dict[str, Any]
     
-    A collection of all it's widgets and buttons. Keys are:
-    - title
-    - board
-    - keys
-    - buttons
+    A collection of all it's widgets. Keys are:
+    - title: [tk.Frame(s)]
+    - board: [[tk.Label(s)],[tk.Label(s)],[tk.Label(s)],[tk.Label(s)],[tk.Label(s)],[tk.Label(s)]]
     '''
 
     def __init__(self) -> None:
@@ -21,21 +20,17 @@ class WORDLE(tk.Tk):
         
         Special attribute
         -----------------
-        `collection`: dict[str, list[Label | Button]
+        `collection`: dict[str, Any]
 
-        A collection of all it's widgets and buttons. Keys are:
-        - title
-        - board
-        - keys
-        - buttons
+        A collection of all it's widgets. Keys are:
+        - title: [tk.Frame(s)]
+        - board: [[tk.Label(s)],[tk.Label(s)],[tk.Label(s)],[tk.Label(s)],[tk.Label(s)],[tk.Label(s)]]
         '''
 
         super().__init__()
-        self.collection: dict[str, list[tk.Label | tk.Button]] = {
-            "title": [],
-            "board": [],
-            "keys": [],
-            "buttons": []
+        self.collection: dict[str, Any] = {
+            "frames": [],
+            "board": [[],[],[],[],[],[]]
         }
 
     def add_title(self, label: tk.Label) -> None:
