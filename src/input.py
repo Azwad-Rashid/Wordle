@@ -4,6 +4,7 @@ import keyboard as kb
 from string import ascii_letters as letters
 
 from WORDLE import WORDLE
+from update_board import update_board
 
 def handle_keypress(master: WORDLE, event: kb.KeyboardEvent) -> None:
     '''Handles user input
@@ -14,15 +15,18 @@ def handle_keypress(master: WORDLE, event: kb.KeyboardEvent) -> None:
     :type event: kb.KeyboardEvent
     
     :rtype: None'''
+
     if event.name in letters:
         current_guess: str = master.var.get()
 
         if len(current_guess) == 5: return # The word length is 5 letters
 
         # Updates the current guess with the new letter
-        current_guess += event.name
+        current_guess += event.name.upper()
         master.var.set(current_guess)
     elif event.name == "enter":
         if len(master.var.get()) == 5:
             master.attempt_no += 1
             master.var.set("")
+
+    update_board(master)

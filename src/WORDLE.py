@@ -34,8 +34,4 @@ class WORDLE(tk.Tk):
             "board": [[],[],[],[],[],[]]
         }
         self.var: tk.StringVar = tk.StringVar(self, "")
-        self.attempt_no: int = 1
-
-    def listen(self):
-        pass
-
+        self.attempt_no: int = 0
