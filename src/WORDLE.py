@@ -10,46 +10,32 @@ class WORDLE(tk.Tk):
     
     Special attribute
     -----------------
-    `collection`: dict[str, Any]
+    `widgets`: dict[str, Any]
     
     A collection of all it's widgets. Keys are:
     - word: str
     - title: [tk.Frame(s)]
     - board: [[tk.Label(s)],[tk.Label(s)],[tk.Label(s)],[tk.Label(s)],[tk.Label(s)],[tk.Label(s)]]
+
+    `var`: tk.StringVar
+
+    A stringVar to store the currently guessed word
+
+    `attempt_no`: int
+
+    An int that stores the attempt count
     '''
 
     def __init__(self) -> None:
         super().__init__()
-        self.collection: dict[str, Any] = {
+        self.widgets: dict[str, Any] = {
             "word": random_word,
             "frames": [],
             "board": [[],[],[],[],[],[]]
         }
+        self.var: tk.StringVar = tk.StringVar(self, "")
+        self.attempt_no: int = 1
 
-    def add_title(self, label: tk.Label) -> None:
-        '''Adds a title to the collection of widgets
-
-        :param label: The label containing the title
-        :type label: tk.Label
-        '''
-
-        self.collection["title"].append(label)
-        
-    def add_board(self, label: tk.Label) -> None:
-        '''Adds a board tile to the collection of widgets
-
-        :param label: The label containing a board tile
-        :type label: tk.Label
-        '''
-
-        self.collection["title"].append(label)
-
-    def add_key(self, btn: tk.Button) -> None:
-        '''Adds a key to the collection of widgets
-
-        :param label: The label containing a key(clickable)
-        :type btn: tk.Button
-        '''
-
-        self.collection["title"].append(btn)
+    def listen(self):
+        pass
 

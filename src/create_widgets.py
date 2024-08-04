@@ -9,9 +9,8 @@ from load_config import config_data
 def create_widgets(master: WORDLE) -> None:
     '''Creates widgets for WORDLE
 
-    :param master: The master or root widget of the tkinter application
-    :type master: Tk
-    :rtype: None
+    :param master: The main widget of the app
+    :type master: WORDLE
     '''
 
     # Gets the required config data to create widgets
@@ -88,7 +87,7 @@ def add_title(master: WORDLE, font: font.Font, colors: dict[str, str]) -> None:
         pady=5
     )
 
-    master.collection["frames"].append(title_frame)
+    master.widgets["frames"].append(title_frame)
 
 def add_board(master: WORDLE, font: font.Font, colors: dict[str, str]) -> None:
     '''Adds the playing board of the app
@@ -110,7 +109,7 @@ def add_board(master: WORDLE, font: font.Font, colors: dict[str, str]) -> None:
 
     for row in range(6):
         for column in range(5):
-            temp = tk.Label(
+            board_tile = tk.Label(
                 master=board_frame,
                 background=colors["black"],
                 foreground="#ffffff",
@@ -122,7 +121,7 @@ def add_board(master: WORDLE, font: font.Font, colors: dict[str, str]) -> None:
                 width=4 # Set it to 4 arbitrarily, seemed to work (idk why)
             )
             
-            temp.grid(
+            board_tile.grid(
                 row=row,
                 column=column,
                 padx=5,
@@ -130,14 +129,14 @@ def add_board(master: WORDLE, font: font.Font, colors: dict[str, str]) -> None:
                 sticky="ew"
             )
 
-            master.collection["board"][row].append(temp)
+            master.widgets["board"][row].append(board_tile)
 
     board_frame.grid(
         row=1,
         column=0
     )
 
-    master.collection["frames"].append(board_frame)
+    master.widgets["frames"].append(board_frame)
 
 
 
