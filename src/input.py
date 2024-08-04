@@ -4,7 +4,8 @@ import keyboard as kb
 from string import ascii_letters as letters
 
 from WORDLE import WORDLE
-from update_board import update_board
+from update_board import update_letters
+from validate import update_colors
 
 def handle_keypress(master: WORDLE, event: kb.KeyboardEvent) -> None:
     '''Handles user input
@@ -24,11 +25,12 @@ def handle_keypress(master: WORDLE, event: kb.KeyboardEvent) -> None:
         # Updates the current guess with the new letter
         current_guess += event.name.upper()
         master.var.set(current_guess)
+        update_letters(master)
     elif event.name == "enter":
         if len(master.var.get()) == 5:
+            update_colors(master)
             master.attempt_no += 1
             master.var.set("")
     elif event.name == "backspace":
         master.var.set(master.var.get()[:len(master.var.get()) - 1])
-
-    update_board(master)
+        update_letters(master)

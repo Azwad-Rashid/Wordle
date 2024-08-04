@@ -19,6 +19,7 @@ def create_widgets(master: WORDLE) -> None:
         font=(config_data["WIDGETS"].get("font_family", "Arial"), config_data["WIDGETS"]["font_size"], "normal")
     )
     widget_hex: dict[str, str] = {
+        "background": config_data["WINDOW"]["background"],
         "black": config_data["COLORS"]["black"],
         "grey": config_data["COLORS"]["grey"],
         "yellow": config_data["COLORS"]["yellow"],
@@ -104,7 +105,7 @@ def add_board(master: WORDLE, font: font.Font, colors: dict[str, str]) -> None:
 
     board_frame: tk.Frame = tk.Frame(
         master=master,
-        background=colors["black"]
+        background=colors["background"]
     )
 
     for row in range(6):
@@ -116,7 +117,7 @@ def add_board(master: WORDLE, font: font.Font, colors: dict[str, str]) -> None:
                 text=" ",
                 font=font,
                 highlightbackground=colors["grey"],
-                highlightthickness=2,
+                highlightthickness=1,
                 height=1, # Set it to 1 arbitrarily, seemed to work (idk why)
                 width=4 # Set it to 4 arbitrarily, seemed to work (idk why)
             )
