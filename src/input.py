@@ -28,5 +28,7 @@ def handle_keypress(master: WORDLE, event: kb.KeyboardEvent) -> None:
         if len(master.var.get()) == 5:
             master.attempt_no += 1
             master.var.set("")
+    elif event.name == "backspace":
+        master.var.set(master.var.get()[:len(master.var.get()) - 1])
 
     update_board(master)

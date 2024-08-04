@@ -11,5 +11,9 @@ def update_board(master: WORDLE) -> None:
 
     if master.attempt_no > 5: return
 
-    for i, letter in enumerate(master.var.get()):
+    current_guess: str = master.var.get()
+
+    current_guess += " " * (5 - len(current_guess))
+
+    for i, letter in enumerate(current_guess):
         master.widgets["board"][master.attempt_no][i].config(text=letter)
