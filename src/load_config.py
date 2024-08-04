@@ -16,13 +16,12 @@ Contains
     - author
     - version
 - WINDOW
-    - width
-    - height
     - topmost
     - background
 - WIDGETS
     - font_family
     - font_size
+- COLORS
     - black
     - grey
     - yellow

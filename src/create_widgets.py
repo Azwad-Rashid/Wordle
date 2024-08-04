@@ -19,10 +19,10 @@ def create_widgets(master: WORDLE) -> None:
         font=(config_data["WIDGETS"].get("font_family", "Arial"), config_data["WIDGETS"]["font_size"], "normal")
     )
     widget_hex: dict[str, str] = {
-        "black": config_data["WIDGETS"]["black"],
-        "grey": config_data["WIDGETS"]["grey"],
-        "yellow": config_data["WIDGETS"]["yellow"],
-        "green": config_data["WIDGETS"]["green"]
+        "black": config_data["COLORS"]["black"],
+        "grey": config_data["COLORS"]["grey"],
+        "yellow": config_data["COLORS"]["yellow"],
+        "green": config_data["COLORS"]["green"]
     }
 
     # Add the name on top as the title

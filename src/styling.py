@@ -16,7 +16,7 @@ def style(master: WORDLE) -> None:
     # Sets the title of the window
     master.update_idletasks()
     master.title(f'{config_data["GENERAL"]["app_name"]} by {config_data["GENERAL"]["author"].split(" ")[0]}')
-    master.config(background=config_data["WIDGETS"]["black"])
+    master.config(background=config_data["WINDOW"]["background"])
 
     # Centres the window on the screen
     ww = master.winfo_width()

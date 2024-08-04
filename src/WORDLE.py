@@ -13,9 +13,12 @@ class WORDLE(tk.Tk):
     `widgets`: dict[str, Any]
     
     A collection of all it's widgets. Keys are:
-    - word: str
     - title: [tk.Frame(s)]
     - board: [[tk.Label(s)],[tk.Label(s)],[tk.Label(s)],[tk.Label(s)],[tk.Label(s)],[tk.Label(s)]]
+
+    `word`: str
+
+    The word to guess for this game
 
     `var`: tk.StringVar
 
@@ -28,10 +31,10 @@ class WORDLE(tk.Tk):
 
     def __init__(self) -> None:
         super().__init__()
-        self.widgets: dict[str, Any] = {
-            "word": random_word,
+        self.widgets: dict[str, list[Any]] = {
             "frames": [],
             "board": [[],[],[],[],[],[]]
         }
+        self.word: str = random_word
         self.var: tk.StringVar = tk.StringVar(self, "")
         self.attempt_no: int = 0
