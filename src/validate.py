@@ -36,3 +36,24 @@ def update_colors(master: WORDLE) -> None:
         else:
             master.widgets["board"][master.attempt_no][i].config(background=colors["grey"])
         sleep(0.3)
+
+def invalid_word(master: WORDLE) -> None:
+    '''Shows an invalid word
+    
+    :param master: The main widget of the app
+    :type master: WORDLE
+
+    Flashes a red color if the current word is invalid
+    '''
+
+    colors: dict[str, str] = {
+        "red": "#ff0000",
+        "black": config_data["COLORS"]["black"],
+    }
+
+    for i in range(5):
+        master.widgets["board"][master.attempt_no][i].config(background=colors["red"])
+    sleep(0.5)
+    for i in range(5):
+        master.widgets["board"][master.attempt_no][i].config(background=colors["black"])
+

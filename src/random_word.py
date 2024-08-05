@@ -2,22 +2,11 @@
 
 import random
 
-def get_random_word() -> str | None:
-    '''Gets a random word
-    
-    :returns: A 5-letter word, suitable for playing WORDLE. Returns None if the word file could not be found
-    :rtype: str | None'''
+word_list: list[str] = []
+with open("src/word_list.txt", "r") as word_file:
+    word_list = word_file.read().split("\n")
 
-    try:
-        with open("src/word_list.txt", "r") as word_file:
-            word_list: list[str] = word_file.read().split("\n")
-
-        return random.choice(word_list)
-    except FileNotFoundError:
-        print("The word file could not be found")
-        return None
-
-random_word: str = get_random_word()
+random_word: str = random.choice(word_list)
 '''A random 5-letter word'''
 
 
