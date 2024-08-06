@@ -26,69 +26,11 @@ def create_widgets(master: WORDLE) -> None:
         "green": config_data["COLORS"]["green"]
     }
 
-    # Add the name on top as the title
-    add_title(master, widget_font, widget_hex)
-
     # Add the board and its tiles
     add_board(master, widget_font, widget_hex)
 
     # TODO: Add the keyboard
 
-
-
-
-
-
-
-
-
-def add_title(master: WORDLE, font: font.Font, colors: dict[str, str]) -> None:
-    '''Adds the introductory info of the app
-
-    :param font: The font style to be used in the title
-    :type font: Font
-    :param colors: A dict containing the colours for the title
-    :type colors: dict[str, str]
-    
-    Information added
-    ---------------------
-    - Name of the game, i.e, "WORDLE"
-    - Name of the author (maybe)
-    '''
-
-    # Frame to contain the info
-    title_frame = tk.Frame(
-        master=master,
-        background=colors["green"]
-    )
-
-    # The name of the game
-    title_font = font.copy()
-    title_font.config(weight="bold", size=50)
-    game_name = tk.Label(
-        master=title_frame,
-        text=config_data["GENERAL"].get("app_name", "WORDLE"),
-        width=10,
-        font=title_font,
-        foreground="#ffffff",
-        background=colors["green"]
-    )
-    game_name.grid(
-        row=0,
-        column=0,
-        columnspan=2,
-        sticky="ew"
-    )
-
-    title_frame.grid(
-        row=0,
-        column=0,
-        sticky="ew",
-        padx=5,
-        pady=5
-    )
-
-    master.widgets["frames"].append(title_frame)
 
 def add_board(master: WORDLE, font: font.Font, colors: dict[str, str]) -> None:
     '''Adds the playing board of the app
@@ -137,7 +79,8 @@ def add_board(master: WORDLE, font: font.Font, colors: dict[str, str]) -> None:
         column=0
     )
 
-    master.widgets["frames"].append(board_frame)
+    master.widgets["frame"].destroy()
+    master.widgets["frame"] = board_frame
 
 
 

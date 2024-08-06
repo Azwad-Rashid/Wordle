@@ -18,7 +18,7 @@ def update_colors(master: WORDLE) -> None:
 
     actual_word: str = master.word.upper()
     guessed_word: str = master.var.get()
-    temp_word: list[str] = list(actual_word) # This list used to manage the yellow cells
+    letters: list[str] = list(actual_word) # This list used to manage the yellow cells
 
     colors: dict[str, str] = {
         "black": config_data["COLORS"]["black"],
@@ -30,9 +30,12 @@ def update_colors(master: WORDLE) -> None:
     for i in range(5):
         if guessed_word[i] == actual_word[i]:
             master.widgets["board"][master.attempt_no][i].config(background=colors["green"])
-        elif guessed_word[i] in temp_word:
-            master.widgets["board"][master.attempt_no][i].config(background=colors["yellow"])
-            temp_word.remove(guessed_word[i])
+        elif guessed_word[i] in letters:
+            if actual_word.count(actual_word[i]) >= guessed_word.count(guessed_word[i]):
+                master.widgets["board"][master.attempt_no][i].config(background=colors["yellow"])
+                letters.remove(guessed_word[i])
+            else:
+                master.widgets["board"][master.attempt_no][i].config(background=colors["grey"])
         else:
             master.widgets["board"][master.attempt_no][i].config(background=colors["grey"])
         sleep(0.3)
@@ -47,7 +50,7 @@ def invalid_word(master: WORDLE) -> None:
     '''
 
     colors: dict[str, str] = {
-        "red": "#ff0000",
+        "red": config_data["COLORS"]["red"],
         "black": config_data["COLORS"]["black"],
     }
 

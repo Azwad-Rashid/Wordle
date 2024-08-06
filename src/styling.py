@@ -14,13 +14,13 @@ def style(master: WORDLE) -> None:
     '''
 
     # Sets the title of the window
-    master.update_idletasks()
     master.title(f'{config_data["GENERAL"]["app_name"]} by {config_data["GENERAL"]["author"].split(" ")[0]}')
     master.config(background=config_data["WINDOW"]["background"])
 
     # Centres the window on the screen
     ww = master.winfo_width()
-    wh = master.winfo_height()
+    # Gets the height of the window dynamically based on its components
+    wh = master.widgets["title"].winfo_height() + master.widgets["frame"].winfo_height() + 10
 
     sw = master.winfo_screenwidth()
     sh = master.winfo_screenheight()
@@ -28,7 +28,7 @@ def style(master: WORDLE) -> None:
     x_gap: int = (sw - ww) // 2
     y_gap: int = (sh-wh) // 2
     
-    master.after(1, lambda: master.geometry(f"{ww}x{wh}+{x_gap}+{y_gap}"))
+    master.after(5, lambda: master.geometry(f"{ww}x{wh}+{x_gap}+{y_gap}"))
 
     # Sets the window to display over everything else
     master.attributes("-topmost", config_data["WINDOW"]["topmost"])

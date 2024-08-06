@@ -17,24 +17,31 @@ def handle_keypress(master: WORDLE, event: kb.KeyboardEvent) -> None:
     :type event: kb.KeyboardEvent
     
     :rtype: None'''
-
-    if event.name in letters:
-        current_guess: str = master.var.get()
-
-        if len(current_guess) == 5: return # The word length is 5 letters
-
-        # Updates the current guess with the new letter
-        current_guess += event.name.upper()
-        master.var.set(current_guess)
-        update_letters(master)
-    elif event.name == "enter":
-        if len(master.var.get()) == 5:
-            if master.var.get().lower() in word_list:
-                update_colors(master)
-                master.attempt_no += 1
-                master.var.set("")
+    
+    if master.status.get() == "start":
+        if event.name == "space":
+            if master.status.get() == "start":
+                master.status.set("play")
             else:
-                invalid_word(master)
-    elif event.name == "backspace":
-        master.var.set(master.var.get()[:len(master.var.get()) - 1])
-        update_letters(master)
+                master.status.set("end")
+    else:
+        if event.name in letters:
+            current_guess: str = master.var.get()
+
+            if len(current_guess) == 5: return # The word length is 5 letters
+
+            # Updates the current guess with the new letter
+            current_guess += event.name.upper()
+            master.var.set(current_guess)
+            update_letters(master)
+        elif event.name == "enter":
+            if len(master.var.get()) == 5:
+                if master.var.get().lower() in word_list:
+                    update_colors(master)
+                    master.attempt_no += 1
+                    master.var.set("")
+                else:
+                    invalid_word(master)
+        elif event.name == "backspace":
+            master.var.set(master.var.get()[:len(master.var.get()) - 1])
+            update_letters(master)
