@@ -31,6 +31,10 @@ class WORDLE(tk.Tk):
     `attempt_no`: int
 
     An int that stores the attempt count
+
+    `win`: bool
+
+    Whether the player has won or not
     '''
 
     def __init__(self) -> None:
@@ -50,4 +54,4 @@ class WORDLE(tk.Tk):
 
         self.var: tk.StringVar = tk.StringVar(self, "")
         self.attempt_no: int = 0
-        print(self.word)
+        self.win: bool = False

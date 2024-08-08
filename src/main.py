@@ -7,6 +7,7 @@ from create_widgets import create_widgets
 from styling import style
 from input import handle_keypress
 from start_screen import create_start_menu
+from end_screen import create_end_menu
 
 def main() -> None:
     # Create the main widget
@@ -27,13 +28,16 @@ def main() -> None:
     root.mainloop()
 
 def update_screen(master: WORDLE) -> None:
-    if master.status.get() == "play":
-        # Initialize the main widget
-        create_widgets(master)
-        master.update_idletasks()
-        style(master)
+    match master.status.get():
+        case "play":
+            create_widgets(master)
+            master.update_idletasks()
+            style(master)
 
-
+        case "end":
+            create_end_menu(master)
+            master.update_idletasks()
+            style(master)
 
 if __name__ == "__main__":
     main()

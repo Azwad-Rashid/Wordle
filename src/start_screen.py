@@ -7,7 +7,14 @@ from WORDLE import WORDLE
 from load_config import config_data
 
 def create_start_menu(master: WORDLE) -> None:
+    '''Creates the start menu
     
+    Components
+    ----------
+    - Intro & rules
+    - Color descriptions
+    - How to start'''
+
     # Gets the required config data to create widgets
     widget_font = font.Font(
         master=master,

@@ -24,7 +24,7 @@ def handle_keypress(master: WORDLE, event: kb.KeyboardEvent) -> None:
                 master.status.set("play")
             else:
                 master.status.set("end")
-    else:
+    elif master.status.get() == "play":
         if event.name in letters:
             current_guess: str = master.var.get()
 

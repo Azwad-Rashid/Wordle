@@ -14,7 +14,8 @@ def update_colors(master: WORDLE) -> None:
     Updates the color of board tiles corresponding to the current attempt
     '''
 
-    if master.attempt_no > 5: return
+    if master.attempt_no > 5:
+        return
 
     actual_word: str = master.word.upper()
     guessed_word: str = master.var.get()
@@ -39,6 +40,14 @@ def update_colors(master: WORDLE) -> None:
         else:
             master.widgets["board"][master.attempt_no][i].config(background=colors["grey"])
         sleep(0.3)
+
+    if actual_word == guessed_word:
+        master.win = True
+        master.status.set("end")
+
+    if master.attempt_no == 5:
+        master.status.set("end")
+
 
 def invalid_word(master: WORDLE) -> None:
     '''Shows an invalid word

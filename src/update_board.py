@@ -3,7 +3,7 @@
 from WORDLE import WORDLE
 
 def update_letters(master: WORDLE) -> None:
-    '''Updates the board according to user input
+    '''Updates the board letters according to user input
     
     :param master: The main widget of the app
     :type master: WORDLE
