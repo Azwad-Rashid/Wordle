@@ -54,12 +54,21 @@ def create_end_menu(master: WORDLE) -> None:
     
     tk.Label(
         master=end_frame,
-        text="Press <SPACE> to play again",
+        text=f"Win streak: {master.streak}{f" (was {master.last_streak})" if not master.win else ""}",
         width=30,
         font=desc_font,
         foreground="#ffffff",
         background=colors["background"]
     ).grid(row=2, column=0, padx=5, pady=5)
+    
+    tk.Label(
+        master=end_frame,
+        text="Press <SPACE> to play again",
+        width=30,
+        font=desc_font,
+        foreground="#ffffff",
+        background=colors["background"]
+    ).grid(row=3, column=0, padx=5, pady=5)
 
     end_frame.grid(row=1, column=0)
 

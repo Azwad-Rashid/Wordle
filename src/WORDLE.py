@@ -35,6 +35,14 @@ class WORDLE(tk.Tk):
     `win`: bool
 
     Whether the player has won or not
+
+    `streak`: int
+
+    The win-streak for this time
+
+    `last_streak`: int
+
+    The last win streak
     '''
 
     def __init__(self) -> None:
@@ -55,6 +63,8 @@ class WORDLE(tk.Tk):
         self.var: tk.StringVar = tk.StringVar(self, "")
         self.attempt_no: int = 0
         self.win: bool = False
+        self.streak: int = 0
+        self.last_streak: int = 0
 
     def reset(self) -> None:
         self.widgets: dict[str, list[Any]] = {

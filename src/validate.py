@@ -44,11 +44,16 @@ def update_colors(master: WORDLE) -> None:
             master.widgets["board"][master.attempt_no][i].config(background=colors["grey"])
         sleep(0.3)
 
+    # Run when the word is guessed
     if actual_word == guessed_word:
         master.win = True
+        master.streak += 1
         master.status.set("end")
 
+    # Run when it's GAME OVER
     if master.attempt_no == 5:
+        master.last_streak = master.streak
+        master.streak = 0
         master.status.set("end")
 
 
