@@ -3,7 +3,7 @@
 import tkinter as tk
 from typing import Any
 
-from random_word import random_word
+from random_word import get_random_word
 
 class WORDLE(tk.Tk):
     '''Extension of classic Tk class for WORDLE
@@ -44,7 +44,7 @@ class WORDLE(tk.Tk):
             "frame": tk.Frame,
             "board": [[],[],[],[],[],[]]
         }
-        self.word: str = random_word
+        self.word: str = get_random_word()
         self.status: tk.StringVar = tk.StringVar(self, "start")
         '''Values:
         - start
@@ -55,3 +55,15 @@ class WORDLE(tk.Tk):
         self.var: tk.StringVar = tk.StringVar(self, "")
         self.attempt_no: int = 0
         self.win: bool = False
+
+    def reset(self) -> None:
+        self.widgets: dict[str, list[Any]] = {
+            "title": tk.Frame,
+            "frame": tk.Frame,
+            "board": [[],[],[],[],[],[]]
+        }
+        self.word = get_random_word()
+        self.status.set("start")
+        self.var.set("")
+        self.attempt_no = 0
+        self.win = False

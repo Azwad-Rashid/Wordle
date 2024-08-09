@@ -16,10 +16,8 @@ def main() -> None:
     # Variable to track the current state of the game
     root.status.trace_add("write", lambda *_: update_screen(root))
 
-    # Creates tjhe start menu
-    create_start_menu(root)
-    root.update_idletasks()
-    style(root)
+    # Creates the start menu
+    start(root)
 
     # Handles the user input
     kb.on_press(lambda event: handle_keypress(root, event))
@@ -38,6 +36,17 @@ def update_screen(master: WORDLE) -> None:
             create_end_menu(master)
             master.update_idletasks()
             style(master)
+
+        case "replay":
+            master.reset()
+            start(master)
+
+def start(master: WORDLE) -> None:
+    # Creates the start menu
+    create_start_menu(master)
+    master.update_idletasks()
+    style(master)
+    print(master.word)
 
 if __name__ == "__main__":
     main()

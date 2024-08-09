@@ -17,13 +17,10 @@ def handle_keypress(master: WORDLE, event: kb.KeyboardEvent) -> None:
     :type event: kb.KeyboardEvent
     
     :rtype: None'''
-    
+
     if master.status.get() == "start":
         if event.name == "space":
-            if master.status.get() == "start":
-                master.status.set("play")
-            else:
-                master.status.set("end")
+            master.status.set("play")
     elif master.status.get() == "play":
         if event.name in letters:
             current_guess: str = master.var.get()
@@ -45,3 +42,7 @@ def handle_keypress(master: WORDLE, event: kb.KeyboardEvent) -> None:
         elif event.name == "backspace":
             master.var.set(master.var.get()[:len(master.var.get()) - 1])
             update_letters(master)
+    elif master.status.get() == "end":
+        if event.name == "space":
+            master.status.set("replay")
+
