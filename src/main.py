@@ -46,7 +46,6 @@ def start(master: WORDLE) -> None:
     create_start_menu(master)
     master.update_idletasks()
     style(master)
-    print(master.word)
 
 if __name__ == "__main__":
     main()

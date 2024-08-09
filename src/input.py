@@ -18,6 +18,10 @@ def handle_keypress(master: WORDLE, event: kb.KeyboardEvent) -> None:
     
     :rtype: None'''
 
+    if event.name == "esc":
+        master.destroy()
+        quit()
+
     if master.status.get() == "start":
         if event.name == "space":
             master.status.set("play")
