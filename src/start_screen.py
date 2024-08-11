@@ -1,10 +1,11 @@
 '''Creates the starting screen for the game'''
 
 import tkinter as tk
-from tkinter import font
 
 from WORDLE import WORDLE
-from load_config import config_data
+from create_labels import color_labels
+from custom_color import custom_color as colors
+from custom_font import custom_font
 
 def create_start_menu(master: WORDLE) -> None:
     '''Creates the start menu
@@ -15,27 +16,13 @@ def create_start_menu(master: WORDLE) -> None:
     - Color descriptions
     - How to start'''
 
-    # Gets the required config data to create widgets
-    widget_font = font.Font(
-        master=master,
-        font=(config_data["WIDGETS"].get("font_family", "Arial"), config_data["WIDGETS"]["font_size"], "normal")
-    )
-    widget_hex: dict[str, str] = {
-        "background": config_data["WINDOW"]["background"],
-        "black": config_data["COLORS"]["black"],
-        "grey": config_data["COLORS"]["grey"],
-        "yellow": config_data["COLORS"]["yellow"],
-        "green": config_data["COLORS"]["green"],
-        "red": config_data["COLORS"]["red"]
-    }
+    add_title(master)
 
-    add_title(master, widget_font, widget_hex)
-
-    add_intro(master, widget_font, widget_hex)
+    add_intro(master)
 
 
 
-def add_title(master: WORDLE, font: font.Font, colors: dict[str, str]) -> None:
+def add_title(master: WORDLE) -> None:
     '''Adds the introductory info of the app
 
     :param master: The root widget
@@ -51,40 +38,27 @@ def add_title(master: WORDLE, font: font.Font, colors: dict[str, str]) -> None:
     - Name of the author (maybe)
     '''
 
-    # Frame to contain the info
-    title_frame = tk.Frame(
-        master=master,
-        background=colors["green"]
-    )
-
     # The name of the game
-    title_font = font.copy()
-    title_font.config(weight="bold", size=50)
-    tk.Label(
-        master=title_frame,
-        text=config_data["GENERAL"].get("app_name", "WORDLE"),
+    title = tk.Label(
+        master=master,
+        text="WORDLE",
         width=10,
-        font=title_font,
+        font=custom_font(50),
         foreground="#ffffff",
-        background=colors["green"]
-    ).grid(
+        background=colors("green")
+    )
+    title.grid(
         row=0,
         column=0,
         columnspan=2,
+        padx=5,
+        pady=5,
         sticky="ew"
     )
 
-    title_frame.grid(
-        row=0,
-        column=0,
-        sticky="ew",
-        padx=5,
-        pady=5
-    )
+    master.widgets["title"] = title
 
-    master.widgets["title"] = title_frame
-
-def add_intro(master: WORDLE, font: font.Font, colors: dict[str, str]) -> None:
+def add_intro(master: WORDLE) -> None:
     '''Adds the introductory info of the app
 
     :param master: The root widget
@@ -95,95 +69,38 @@ def add_intro(master: WORDLE, font: font.Font, colors: dict[str, str]) -> None:
     :type colors: dict[str, str]
     '''
 
-    intro_font = font.copy()
-
-    intro_font.config(size=15)
-    intro_frame: tk.Frame = tk.Frame(master, background=colors["background"])
+    intro_frame: tk.Frame = tk.Frame(master, background=colors("background"))
     tk.Label(
         master=intro_frame,
         text="Guess the word in 6 or fewer tries",
         width=30,
-        font=intro_font,
-        foreground="#ffffff",
-        background=colors["background"],
+        font=custom_font(15),
+        foreground=colors("white"),
+        background=colors("background"),
     ).grid(row=0, column=0, columnspan=2, padx=5, pady=5)
 
-    # Colors description
-    desc_font = font.copy()
-    desc_font.config(size=10)
-
-    # Green desc
-    tk.Label(
+    color_info = [
+        "=> It's in the correct position",
+        "=> It's in the wrong position",
+        "=> It's not in the word",
+        "=> It's not a valid word",
+    ]
+    color_labels(
         master=intro_frame,
-        text="     ",
-        background=colors["green"],
-        highlightcolor="#ffffff",
-        highlightthickness=2
-    ).grid(row=1, column=0, padx=5, pady=5, sticky="e")
-    tk.Label(
-        master=intro_frame,
-        text="=> It's in the correct position",
-        font=desc_font,
-        background=colors["background"],
-        foreground="#ffffff"
-    ).grid(row=1, column=1, padx=5, pady=5, sticky="w")
-
-    # Yellow desc
-    tk.Label(
-        master=intro_frame,
-        text="     ",
-        background=colors["yellow"],
-        highlightcolor="#ffffff",
-        highlightthickness=2
-    ).grid(row=2, column=0, padx=5, pady=5, sticky="e")
-    tk.Label(
-        master=intro_frame,
-        text="=> It's in the wrong position",
-        font=desc_font,
-        background=colors["background"],
-        foreground="#ffffff"
-    ).grid(row=2, column=1, padx=5, pady=5, sticky="w")
-
-    # Grey desc
-    tk.Label(
-        master=intro_frame,
-        text="     ",
-        background=colors["grey"],
-        highlightcolor="#ffffff",
-        highlightthickness=2
-    ).grid(row=3, column=0, padx=5, pady=5, sticky="e")
-    tk.Label(
-        master=intro_frame,
-        text="=> It's not in the word",
-        font=desc_font,
-        background=colors["background"],
-        foreground="#ffffff"
-    ).grid(row=3, column=1, padx=5, pady=5, sticky="w")
-
-    # Red desc
-    tk.Label(
-        master=intro_frame,
-        text="     ",
-        background=colors["red"],
-        highlightcolor="#ffffff",
-        highlightthickness=2
-    ).grid(row=4, column=0, padx=5, pady=5, sticky="e")
-    tk.Label(
-        master=intro_frame,
-        text="=> It's not a valid word",
-        font=desc_font,
-        background=colors["background"],
-        foreground="#ffffff"
-    ).grid(row=4, column=1, padx=5, pady=5, sticky="w")
+        color_list=["green", "yellow", "grey", "red"],
+        label_list=color_info,
+        start=1
+    )
 
     tk.Label(
         master=intro_frame,
-        text="Press <SPACE> to start!",
+        text="Press <SPACE> to start the game",
         width=30,
-        font=intro_font,
-        foreground="#ffffff",
-        background=colors["background"],
-    ).grid(row=5, column=0, columnspan=2, padx=5, pady=5)
+        font=custom_font(15),
+        foreground=colors("white"),
+        background=colors("background"),
+    ).grid(row=len(color_info) + 1, column=0, columnspan=2, padx=5, pady=5)
+
 
     intro_frame.grid(row=1, column=0)
 

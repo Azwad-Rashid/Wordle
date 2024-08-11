@@ -29,7 +29,7 @@ def handle_keypress(master: WORDLE, event: kb.KeyboardEvent) -> None:
         if event.name in letters:
             current_guess: str = master.var.get()
 
-            if len(current_guess) == 5: return # The word length is 5 letters
+            if len(current_guess) == 5: return # Stops the word from having more than 5 letters
 
             # Updates the current guess with the new letter
             current_guess += event.name.upper()

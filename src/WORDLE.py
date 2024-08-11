@@ -47,7 +47,7 @@ class WORDLE(tk.Tk):
 
     def __init__(self) -> None:
         super().__init__()
-        self.widgets: dict[str, list[Any]] = {
+        self.widgets: dict[str, Any] = {
             "title": tk.Frame,
             "frame": tk.Frame,
             "board": [[],[],[],[],[],[]]
@@ -67,7 +67,7 @@ class WORDLE(tk.Tk):
         self.last_streak: int = 0
 
     def reset(self) -> None:
-        self.widgets: dict[str, list[Any]] = {
+        self.widgets: dict[str, Any] = {
             "title": tk.Frame,
             "frame": tk.Frame,
             "board": [[],[],[],[],[],[]]

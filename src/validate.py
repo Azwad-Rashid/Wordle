@@ -49,9 +49,8 @@ def update_colors(master: WORDLE) -> None:
         master.win = True
         master.streak += 1
         master.status.set("end")
-
-    # Run when it's GAME OVER
-    if master.attempt_no == 5:
+    # Run when GAME OVER
+    elif master.attempt_no == 5:
         master.last_streak = master.streak
         master.streak = 0
         master.status.set("end")
