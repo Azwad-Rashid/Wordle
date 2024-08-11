@@ -1,7 +1,10 @@
+'''Loads the data from a config.ini file'''
+
 import configparser
+import os
 
 config = configparser.ConfigParser()
-config.read("E:/Coding/Wordle/src/config.ini")
+config.read(os.path.abspath("config.ini"))
 
 config_data: dict[str, dict[str, str]] = {
     section: {

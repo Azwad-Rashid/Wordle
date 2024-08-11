@@ -1,6 +1,7 @@
 '''Module used to style the master window of WORDLE'''
 
 import tkinter as tk
+import os
 
 from WORDLE import WORDLE
 from load_config import config_data
@@ -15,7 +16,7 @@ def style(master: WORDLE) -> None:
 
     # Sets the title of the window
     master.title(f'{config_data["GENERAL"]["app_name"]} by {config_data["GENERAL"]["author"].split(" ")[0]}')
-    master.iconbitmap("E:/Coding/Wordle/src/icon.ico")
+    master.iconbitmap(os.path.abspath("icon.ico"))
     master.config(background=config_data["COLORS"]["background"])
 
     # Centres the window on the screen
