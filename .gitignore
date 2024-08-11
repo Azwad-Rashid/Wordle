@@ -2,6 +2,9 @@
 test.py
 gpt.py
 
+# .exe files
+*.exe
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

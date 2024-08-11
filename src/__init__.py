@@ -1,5 +1,7 @@
 __all__ = [
+    "create_labels",
     "create_widgets",
+    "custom_color",
     "custom_font",
     "end_screen",
     "input",

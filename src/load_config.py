@@ -1,7 +1,7 @@
 import configparser
 
 config = configparser.ConfigParser()
-config.read("src/config.ini")
+config.read("E:/Coding/Wordle/src/config.ini")
 
 config_data: dict[str, dict[str, str]] = {
     section: {

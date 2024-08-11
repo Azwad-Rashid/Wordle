@@ -5,7 +5,7 @@ import random
 word_list: list[str] = []
 '''The list of all valid words'''
 
-with open("src/word_list.txt", "r") as word_file:
+with open("E:/Coding/Wordle/src/word_list.txt", "r") as word_file:
     word_list = word_file.read().split("\n")
 
 def get_random_word() -> str:
