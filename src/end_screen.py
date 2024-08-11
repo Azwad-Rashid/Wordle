@@ -17,7 +17,7 @@ def create_end_menu(master: WORDLE) -> None:
     - Replay?
     '''
 
-    end_frame: tk.Frame = tk.Frame(master, background=colors("green"))
+    end_frame: tk.Frame = tk.Frame(master, background=colors("background"))
     tk.Label(
         master=end_frame,
         text="🎉CONGRATULATIONS🎉" if master.win else "GAME OVER",
